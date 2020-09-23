@@ -7,6 +7,8 @@ public class GameLogic{
 
     static Player player;
 
+    public static boolean isRunning ;
+
     //method to get user input from console
     public static int readInt(String prompt, int userChoices){
         int input;
@@ -69,7 +71,57 @@ public class GameLogic{
         //create a new player object
         player = new Player(name);
 
+        //setting isRunning to true so that the game can continue
+        isRunning = true;
+
         //start main game loop(next part)
-        //gameLoop();
+        gameLoop();
+    }
+
+    // method to continue the journey (more next)
+    public static void continueJourney(){
+
+    }
+
+    public static void characterInfo(){
+        clearConsole();
+        System.out.println("CHARACTER INFOMATION\n\n\n\n");
+        System.out.println(player.name + "\tHit Points" + player.hitPoints + "/" + player.maxHitPoint);
+        System.out.println("Experience Points: " + player.experiencePoints);
+
+        //printing the chosen traits
+        if(player.numberAttackUpgrades > 0){
+            System.out.println("Offensive trait: " + player.attackUpgrades[player.numberAttackUpgrades - 1]);
+            System.out.println("\n\n\n\n");
+        }
+        if(player.numberDefensiveUpgrades > 0){
+            System.out.println("Defensive trait: " + player.defenseUpgrades[player.numberDefensiveUpgrades -1]);
+        }
+        anythingToContinue();
+    }
+
+    //printing the main menu
+    public static void printMenu(){
+        clearConsole();
+        System.out.println("\n This is the Menu\n\n");
+        System.out.println("Please choose an action");
+        System.out.println("\n\n\n");
+        System.out.println("(1) Continue on your journey");
+        System.out.println("(2) See my Character information");
+        System.out.println("(3) Exit Game");
+    }
+
+    //main game loop
+    public static void gameLoop(){
+        while(isRunning){
+            printMenu();
+            int input = readInt("-> ", 3);
+            if(input == 1){
+                continueJourney();
+            }else if(input == 2){
+                characterInfo();
+            }else
+                isRunning = false;
+        }
     }
 }

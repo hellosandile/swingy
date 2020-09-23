@@ -7,7 +7,7 @@ public class Player extends Character {
 
     //Arrays to store skill names
     public String[] attackUpgrades = {"Strength", "Power", "Might", "Godlike Strength"};
-    private String[] defenseUpgrades = {"Heavy Bones", "Stoneskin", "Scale Armor", "Holy Aura"};
+    public String[] defenseUpgrades = {"Heavy Bones", "Stoneskin", "Scale Armor", "Holy Aura"};
 
     //Player specific constructor
     public Player(String name) {
