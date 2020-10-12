@@ -12,7 +12,7 @@ public class GameLogic{
 
     static Hero player;
     public static iHero _ihero = null;
-    GamePlay gamePlay;
+    public static GamePlay gamePlay = new GamePlay();
     
 
     public static boolean isRunning ;
@@ -22,6 +22,7 @@ public class GameLogic{
     //Story elements
     public static int place = 0, act;
     public static String[] places = {"Northing", "Easting", "Southing", "Westing"};
+    private static com.project.HeroType HeroType;
 
     //method to get user input from console
     public static int readInt(String prompt, int userChoices){
@@ -103,7 +104,7 @@ public class GameLogic{
         }while(!heroSet);
 
         //create a new player object
-         _ihero = HeroType.newType(name, heroName);
+         _ihero = HeroType.newType(name, heroName, 1, 100, 30, 25, 100);
 
         //setting isRunning to true so that the game can continue
         isRunning = true;
@@ -113,14 +114,11 @@ public class GameLogic{
         gameLoop();
     }
 
-    public void play(){
-        _ihero.playing();
-        gamePlay.MapDisplay();
-    }
     // method to continue the journey (more next)
     public static void startJourney(){
         //So this is where I want to give the option to go NESW, call the actual battle method until dead or leveled up.
-        play();
+        _ihero.playing();
+        gamePlay.MapDisplay();
         do{
             System.out.println("\nPlease choose a directions");
             System.out.print("\n");
@@ -134,16 +132,23 @@ public class GameLogic{
 
             if(input == 1){
                 //North counter must ++ if win until reaching border
-                //heroposition(x, y)
+                gamePlay.heroPosition(0, 1);
+                gamePlay.MapDisplay();
             }
             else if(input == 2){
                 //east counter ++......
+                gamePlay.heroPosition(1, 0);
+                gamePlay.MapDisplay();
             }
             else if(input == 3){
                 //south counter++
+                gamePlay.heroPosition(0, -1);
+                gamePlay.MapDisplay();
             }
             else if(input == 4){
                 //weest counter++....
+                gamePlay.heroPosition(-1, 0);
+                gamePlay.MapDisplay();
             }else if(input != 1 || input != 2 || input != 3 || input != 4){
                 System.out.println("Please choose of the correct options");
             }
@@ -153,9 +158,9 @@ public class GameLogic{
 
     }
 
-    public static void characterInfo(){
+    public static void MyCharacterInfo(){
         clearConsole();
-        System.out.println("CHARACTER INFORMATION\n----------------\n");
+        System.out.println("MyCharacter INFORMATION\n----------------\n");
         System.out.println(player.name + player.heroName);
         //System.out.println("Experience Points: " + player.experiencePoints);
 
@@ -177,7 +182,7 @@ public class GameLogic{
         System.out.println("Please choose an action");
         System.out.print("\n");
         System.out.println("(1) Start your journey");
-        System.out.println("(2) See my Character information");
+        System.out.println("(2) See my MyCharacter information");
         System.out.println("(3) Exit Game");
     }
 
@@ -206,7 +211,7 @@ public class GameLogic{
             if(input == 1){
                 startJourney();
             }else if(input == 2){
-                characterInfo();
+                MyCharacterInfo();
             }else
                 isRunning = false;
         }

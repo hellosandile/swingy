@@ -1,15 +1,18 @@
 package com.project;
 
-public class GamePlay{
-    public static int[][] map;
-    public static int mapy;
-    public static int mapx;
-    public static int size;
-    public static int xpos;
-    public static int ypos;
-    public void heroposition(int x, int y){
+import com.project.person.hero.IGameControlls;
 
-    }
+public class GamePlay implements IGameControlls{
+    public int[][] map;
+    public int mapy;
+    public int mapx;
+    public int size;
+    public int xpos;
+    public int ypos;
+    public MyCharacter myCharacter;
+    private boolean condition = false;
+
+    public GamePlay(){}
 
     public void setHeroposition(){
         int x = 0;
@@ -37,8 +40,13 @@ public class GamePlay{
     }
 
     public void MapDisplay(){
-        MapDisplay();
-        setHeroposition();
+        if (condition == false){
+            Mapsize();
+            setHeroposition();
+            condition = true;
+        }
+        
+        
 
         for(int y = 0; y < size; y++){
             for(int x = 0; x < size; x++){
@@ -63,5 +71,33 @@ public class GamePlay{
             }
             System.out.println();
         }
+    }
+
+    public void heroPosition(int x, int y) {
+        this.xpos += x;
+        if(this.xpos < 0){
+            this.xpos = (int)(size / 2);
+            condition = false;
+        }else if(this.xpos >= size){
+            this.xpos = (int)(size / 2);
+            condition = false;
+        }
+
+        this.ypos += y;
+        if(this.ypos < 0){
+            this.ypos = (int)(size / 2);
+            condition = false;
+        }else if(this.ypos >= size){
+            this.ypos = (int)(size / 2);
+            condition = false;
+        }
+    }
+
+    public void updateExp(int exp) {
+
+    }
+
+    public void meetEnemy(int Hy, int Hx, int Ey, int Ex) {
+
     }
 }
