@@ -31,6 +31,13 @@ public class GameLogic{
         do{
             System.out.println(prompt);
             try{
+                if(input > userChoices){
+                    throw new NumberFormatException();
+                }
+            }catch(NumberFormatException e){
+                System.out.println("Please enter an integer!!!");
+            }
+            try{
                 input = Integer.parseInt(scanner.next());
             }catch(Exception e){
                 input = -1;
@@ -119,6 +126,7 @@ public class GameLogic{
         //So this is where I want to give the option to go NESW, call the actual battle method until dead or leveled up.
         _ihero.playing();
         gamePlay.MapDisplay();
+        //int move  = 0;
         do{
             System.out.println("\nPlease choose a directions");
             System.out.print("\n");
@@ -126,13 +134,15 @@ public class GameLogic{
             System.out.println("(2) East");
             System.out.println("(3) South");
             System.out.println("(4) West");
-            int input = readInt("-> " , 1);
+            int input = readInt("-> " , 4);
             clearConsole();
-            System.out.println(input);
+            //System.out.println(input);
 
-            if(input == 1){
+            if(input > 4 || input < 1 ){
+                System.out.println("Please choose of the correct options");
+            }else if(input == 1){
                 //North counter must ++ if win until reaching border
-                gamePlay.heroPosition(0, 1);
+                gamePlay.heroPosition(0, -1);
                 gamePlay.MapDisplay();
             }
             else if(input == 2){
@@ -142,15 +152,13 @@ public class GameLogic{
             }
             else if(input == 3){
                 //south counter++
-                gamePlay.heroPosition(0, -1);
+                gamePlay.heroPosition(0, 1);
                 gamePlay.MapDisplay();
             }
             else if(input == 4){
                 //weest counter++....
                 gamePlay.heroPosition(-1, 0);
                 gamePlay.MapDisplay();
-            }else if(input != 1 || input != 2 || input != 3 || input != 4){
-                System.out.println("Please choose of the correct options");
             }
 
         }while(true);

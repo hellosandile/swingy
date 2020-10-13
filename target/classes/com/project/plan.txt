@@ -4,7 +4,7 @@ To Do...
 2. Map
 3. Land hero on the map & vilan
 4. Controls
-
+5 . -- Fix the input larger than the user choices
 
 -------------
 
