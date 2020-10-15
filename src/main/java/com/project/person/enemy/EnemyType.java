@@ -1,6 +1,7 @@
-package com.project;
+package com.project.person.enemy;
 
 import com.project.person.enemy.*;
+import com.project.*;
 
 
 public class EnemyType{

@@ -1,7 +1,7 @@
 package com.project;
 
 import com.project.person.enemy.EnemyType;
-import com.project.person.enemy.TheEvilQueen;
+import com.project.person.enemy.Aku;
 import com.project.person.enemy.iEnemy;
 import com.project.person.hero.Animaniac;
 import com.project.person.hero.Hero;
@@ -116,7 +116,7 @@ public class GameLogic{
 
         //create a new player object
          _ihero = HeroType.newType(name, heroName, 1, 100, 30, 25, 100);
-         _IEnemy = EnemyType.newType("Max","Aku", 1, 100, 30, 25, 100);
+         _IEnemy = EnemyType.newType("Max",enemies[1], 1, 100, 20, 25, 90);
 
         //setting isRunning to true so that the game can continue
         isRunning = true;
