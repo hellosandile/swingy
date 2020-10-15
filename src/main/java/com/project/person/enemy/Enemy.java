@@ -8,12 +8,10 @@ public class Enemy {
     public int defence;
     public String name;
     public String enemyName;
-    public MyCharacter myCharacter;
 
-    public Enemy(String name, String enemyName, MyCharacter myCharacter){
+    public Enemy(String name, String enemyName){
         this.name = name;
         this.enemyName = enemyName;
-        this.myCharacter = myCharacter;
     }
     public int getHitPoint() {
         return hitPoint;

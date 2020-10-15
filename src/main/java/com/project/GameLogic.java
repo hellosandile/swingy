@@ -23,10 +23,10 @@ public class GameLogic{
     public static String [] enemies = {"Aku", "Scar", "Shredder", "TheEvilQueen"};
 
     //Story elements
-    public static int place = 0, act;
-    public static String[] places = {"Northing", "Easting", "Southing", "Westing"};
-    private static com.project.HeroType HeroType;
-    private static EnemyType enemyType;
+    //public static int place = 0, act;
+    //public static String[] places = {"Northing", "Easting", "Southing", "Westing"};
+    //private static com.project.HeroType HeroType;
+    // private static EnemyType enemyType;
 
     //method to get user input from console
     public static int readInt(String prompt, int userChoices){
@@ -72,6 +72,7 @@ public class GameLogic{
         boolean heroSet = false;
         String name;
         String heroName = null;
+        int x = 1;
         //print title screen
         clearConsole();
         Story.printGameIntro();;
@@ -115,8 +116,10 @@ public class GameLogic{
         }while(!heroSet);
 
         //create a new player object
-         _ihero = HeroType.newType(name, heroName, 1, 100, 30, 25, 100);
-         _IEnemy = EnemyType.newType("Max",enemies[1], 1, 100, 20, 25, 90);
+        if(x == 1){
+            _ihero = HeroType.newType(name, heroName, 1, 100, 30, 25, 100);
+        }
+         _IEnemy = EnemyType.enemyType("Max",enemies[1]);
 
         //setting isRunning to true so that the game can continue
         isRunning = true;
@@ -128,8 +131,9 @@ public class GameLogic{
 
     // method to continue the journey (more next)
     public static void startJourney(){
+        
         //So this is where I want to give the option to go NESW, call the actual battle method until dead or leveled up.
-        _ihero.playing();
+        //_ihero.playing();
         _IEnemy.Enemyplaying();
         gamePlay.MapDisplay();
         //int move  = 0;
