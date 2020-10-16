@@ -119,7 +119,8 @@ public class GameLogic{
         if(x == 1){
             _ihero = HeroType.newType(name, heroName, 1, 100, 30, 25, 100);
         }
-         _IEnemy = EnemyType.enemyType("Max",enemies[1]);
+         _IEnemy = EnemyType.enemyType("Max","Aku");
+        //  _IEnemy = EnemyType.enemyType("Max",enemies[1]);
 
         //setting isRunning to true so that the game can continue
         isRunning = true;
@@ -133,10 +134,9 @@ public class GameLogic{
     public static void startJourney(){
         
         //So this is where I want to give the option to go NESW, call the actual battle method until dead or leveled up.
-        //_ihero.playing();
+        ihero.playing();
         _IEnemy.Enemyplaying();
         gamePlay.MapDisplay();
-        //int move  = 0;
         do{
             System.out.println("\nPlease choose a directions");
             System.out.print("\n");

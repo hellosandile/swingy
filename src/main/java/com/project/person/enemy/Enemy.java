@@ -53,12 +53,12 @@ public class Enemy {
         this.enemyName = enemyName;
     }
 
-    public MyCharacter getMyCharacter() {
-        return myCharacter;
-    }
+    // public MyCharacter getMyCharacter() {
+    //     return myCharacter;
+    // }
 
-    public void setMyCharacter(MyCharacter myCharacter) {
-        this.myCharacter = myCharacter;
-    }
+    // public void setMyCharacter(MyCharacter myCharacter) {
+    //     this.myCharacter = myCharacter;
+    // }
 
 }
