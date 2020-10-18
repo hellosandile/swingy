@@ -14,9 +14,9 @@ public class Story {
     }
 
     public static void printFightOrRun(){
-        System.out.println("GET READY - An Enemy is right in front of you\n");
-        System.out.println("(1) Would you like to fight?");
-        System.out.println("(2) Would you like to run?");
+        System.out.println("You encounted an enemy. What do you want to do?");
+        System.out.println("(1) Fight");
+        System.out.println("(2) Run for the hills");
         GameLogic.anythingToContinue();
     }
 

@@ -3,13 +3,13 @@ package com.project.person.enemy;
 import com.project.MyCharacter;
 
 public class Aku extends Enemy implements iEnemy {
-    protected int attack = 35;
-    protected int defence = 35;
-    protected int xp;
-    protected int yp;
+    // protected int attack;
+    // protected int defence;
+    protected static int xp;
+    protected static int yp;
 
-    public Aku(String name,String enemyName){
-        super(name,enemyName);
+    public Aku(String name,int hitPoint, int attack, int defence){
+        super(name, hitPoint, attack, defence);
     }
 
     @Override
@@ -17,18 +17,35 @@ public class Aku extends Enemy implements iEnemy {
 
         System.out.println("Aku creater");
     }
+
+    @Override
+    public Aku getAku() {
+
+       return this;
+    }
+
     public void AkuCharacter(){
         
     }
     public int getEnemyX() {
-        return this.yp;
+        return yp;
     }
 
     public int getEnemyY() {
-        return this.xp;
+        return xp;
     }
     public void setEnemyPosition(int X, int Y) {
-        this.xp = X;
-        this.yp = Y;
+        xp = X;
+        yp = Y;
+    }
+
+    public static int getX()
+    {
+        return xp;
+    }
+
+    public static int getY()
+    {
+        return yp;
     }
 }

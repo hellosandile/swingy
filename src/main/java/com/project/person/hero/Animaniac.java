@@ -1,5 +1,6 @@
 package com.project.person.hero;
 
+
 import com.project.GameLogic;
 import com.project.MyCharacter;
 
@@ -11,15 +12,21 @@ public class Animaniac extends Hero implements iHero {
         super(name,_heroname,myCharacter);
     }
     
-    @Override
+    //@Override
     public void playing() {
+        //System.out.println("Animaniac Fetures");
+        //System.out.println("Name "+this.name);
+        //System.out.println("Type "+this.heroName);
+        //System.out.println("attack "+this.attack);
+        //System.out.println("defense "+ this.myCharacter.Attack);
+        //System.out.println(("Level "+ this.level));
         System.out.println("Animaniac Fetures");
         System.out.println("Name "+this.name);
         System.out.println("Type "+this.heroName);
-        System.out.println("attect "+this.attack);
-        System.out.println("defense "+ this.myCharacter.Attack);
-        
-
+        System.out.println("attack "+this.myCharacter.Attack);
+        System.out.println("defense "+ this.myCharacter.Defense);
+        System.out.println(("Level "+ this.myCharacter.Level));
 
     }
+
 }

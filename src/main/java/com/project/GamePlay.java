@@ -1,5 +1,9 @@
 package com.project;
 
+import java.util.concurrent.ThreadLocalRandom;
+
+import com.project.person.enemy.Aku;
+import com.project.person.enemy.Enemy;
 import com.project.person.hero.IGameControlls;
 
 public class GamePlay implements IGameControlls{
@@ -91,6 +95,34 @@ public class GamePlay implements IGameControlls{
             this.ypos = (int)(size / 2);
             condition = false;
         }
+
+        if (samePosition())
+        {
+            Story.printFightOrRun();
+            int input = GameLogic.readInt("-> " , 2);
+            if(input == 1){
+                System.out.println("They are fightijng");
+                //fight shit
+            }if(input == 2){
+            System.out.println("running away");
+                //run shit
+            }
+        }
+    }
+
+    public Boolean samePosition()
+    {
+        //Not getting the Aku values(the enemy so that they can fight)
+        System.out.println(Aku.getX());
+        System.out.println(Aku.getY());
+        System.out.println(xpos);
+        System.out.println(ypos);
+        if (Aku.getX() == xpos && Aku.getY() == ypos){
+            //System.out.println("`ptint you BITCH!!!!");
+            return true;
+
+        }
+        return false;
     }
 
     public void updateExp(int exp) {

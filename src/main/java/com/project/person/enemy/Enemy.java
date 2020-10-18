@@ -1,25 +1,42 @@
 package com.project.person.enemy;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 import com.project.MyCharacter;
+import com.project.person.hero.Hero;
 
 public class Enemy {
-    public int hitPoint = 100;
+    public int hitPoint;
     public int attack;
     public int defence;
     public String name;
-    public String enemyName;
 
-    public Enemy(String name, String enemyName){
+    public Enemy(String name, int hitPoint, int attack, int defence) {
         this.name = name;
-        this.enemyName = enemyName;
+        this.hitPoint = hitPoint;
+        this.attack = attack;
+        this.defence = defence;
     }
-    public int getHitPoint() {
-        return hitPoint;
+
+    public Enemy(String name2, String enemyName) {
     }
 
     public void setHitPoint(int hitPoint) {
         this.hitPoint = hitPoint;
     }
+
+    public int getHitPoint() {
+        return hitPoint;
+    }
+
+    // public MyCharacter getMyCharacter() {
+    //     return myCharacter;
+    // }
+
+    // public void setMyCharacter(MyCharacter myCharacter) {
+    //     this.myCharacter = myCharacter;
+    // 
+
 
     public int getAttack() {
         return attack;
@@ -45,20 +62,18 @@ public class Enemy {
         this.name = name;
     }
 
-    public String getEnemyName() {
-        return enemyName;
+    public void attack(Hero hero)
+    {
+        int randV = ThreadLocalRandom.current().nextInt(0,10);
+        if (this.getAttack() > hero.getDefence())
+        {
+            hero.setHitPoint(hero.hitPoint - (this.attack - hero.getDefence()));
+        }
+        else
+            if (randV <= 2)
+            {
+                hero.setHitPoint(hero.hitPoint - this.attack);
+            }
     }
-
-    public void setEnemyName(String enemyName) {
-        this.enemyName = enemyName;
-    }
-
-    // public MyCharacter getMyCharacter() {
-    //     return myCharacter;
-    // }
-
-    // public void setMyCharacter(MyCharacter myCharacter) {
-    //     this.myCharacter = myCharacter;
-    // }
 
 }

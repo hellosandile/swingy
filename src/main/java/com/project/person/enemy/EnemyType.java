@@ -1,16 +1,12 @@
 package com.project.person.enemy;
 
-import com.project.person.enemy.*;
-import com.project.*;
-
-
 public class EnemyType{
-    public static iEnemy enemyType(String name,String _enemyname){
+    public static iEnemy enemyType(String name,int hitPoint, int attack, int defence){
 
         System.out.println("Enemy created");
         
-        if(_enemyname.equals("Aku")){
-            return new Aku( name, _enemyname);
+        if(name.equals("Aku")){
+            return new Aku( name, hitPoint, attack, defence);
         }else{
             return null;
         }
