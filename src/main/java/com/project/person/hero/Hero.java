@@ -8,9 +8,9 @@ import com.project.MyCharacter;
 import com.project.person.enemy.Enemy;
 
 import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
+import javax.validation.Validator;
+import javax.validation.Validation;
 
 public class Hero {
     public String name;
