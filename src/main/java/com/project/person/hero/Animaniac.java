@@ -14,12 +14,6 @@ public class Animaniac extends Hero implements iHero {
     
     //@Override
     public void playing() {
-        //System.out.println("Animaniac Fetures");
-        //System.out.println("Name "+this.name);
-        //System.out.println("Type "+this.heroName);
-        //System.out.println("attack "+this.attack);
-        //System.out.println("defense "+ this.myCharacter.Attack);
-        //System.out.println(("Level "+ this.level));
         System.out.println("Animaniac Fetures");
         System.out.println("Name "+this.name);
         System.out.println("Type "+this.heroName);

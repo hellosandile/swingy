@@ -78,8 +78,4 @@ public class MyCharacter{
         Hp = hp;
     }
 
-
-    //methods every MyCharacter has
-    // public abstract int attack();
-    // public abstract int defend();
 }

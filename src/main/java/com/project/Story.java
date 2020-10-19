@@ -3,8 +3,13 @@ package com.project;
 //All this class does is story methods to print out every part of the story
 public class Story {
 
+    public static void clearConsole(){
+        for(int i = 0; i < 4; i++)
+            System.out.println();
+    }
+
     public static void printDirectionToTake(){
-        GameLogic.clearConsole();
+        clearConsole();
         System.out.println("Which direction would you like to go?");
         System.out.println("(1) North");
         System.out.println("(2) East");
@@ -16,6 +21,7 @@ public class Story {
     public static void printFightOrRun(){
         System.out.println("You encounted an enemy. What do you want to do?");
         System.out.println("(1) Fight");
+
         System.out.println("(2) Run for the hills");
     }
 
@@ -30,13 +36,26 @@ public class Story {
     public static void printYouWon(){
         System.out.println("YEAH!! You beat the enemy");
         System.out.println("This is who you defeated");
-        //print enemy and stats
         GameLogic.anythingToContinue();
     }
 
     public static void printGameIntro(){
         System.out.println("Welcome to Swingy\n---------------------\nLet us get you started");
     }
-}
 
-// You won(1 Gain ep based on villian power, 2 Gain an aritifact which can keep or leave which vary) - You lost(You died and lost the mission) - You ran away with not damage - You couldn't get away(you got puched and lost blah and position) -
+    public static void printGameEnding(){
+        clearConsole();
+        System.out.print(
+                                "******************************************************************************\n" +
+                                "*                                     THE END                                *\n" +
+                                "*                                                                            *\n" +
+                                "*                WELL    DONE     YOU     FINISHED    THE    GAME            *\n" +
+                                "*                                                                            *\n" +
+                                "*                                                                            *\n" +
+                                "*                                                                            *\n" +
+                                "******************************************************************************\n"
+
+                );
+
+    }
+}

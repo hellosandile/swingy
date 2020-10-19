@@ -89,6 +89,14 @@ public class GamePlay implements IGameControlls{
     }
 
     public void heroPosition(int x, int y) {
+
+        if (xpos == 0 || xpos == size - 1 || ypos == 0 || ypos == size -1)
+        {
+            Story.printGameEnding();
+            System.exit(0);
+            GameLogic.scanner.close();
+        }
+        
         this.xpos += x;
         if(this.xpos < 0){
             this.xpos = (int)(size / 2);
@@ -114,7 +122,6 @@ public class GamePlay implements IGameControlls{
             if(input == 1)
             {
                 System.out.println("They are fightijng");
-                //fight shit
                 onFight();
                 
             }
@@ -149,12 +156,6 @@ public class GamePlay implements IGameControlls{
 
     public Boolean samePosition()
     {
-        //REMBER TO DELETE
-        //Not getting the Aku values(the enemy so that they can fight)
-        // System.out.println(Aku.getX());
-        // System.out.println(Aku.getY());
-        // System.out.println(xpos);
-        // System.out.println(ypos);
        
         if (Aku.getX() == xpos && Aku.getY() == ypos){
            return true;

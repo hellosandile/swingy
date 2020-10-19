@@ -59,11 +59,6 @@ public class GameLogic{
         return input;
     }
 
-    public static void clearConsole(){
-        for(int i = 0; i < 4; i++)
-            System.out.println();
-    }
-
     public static void anythingToContinue(){
         System.out.println("Enter anything to continue...");
         scanner.next();
@@ -76,7 +71,7 @@ public class GameLogic{
         String heroName = null;
         int x = 1;
         //print title screen
-        clearConsole();
+        Story.clearConsole();
         Story.printGameIntro();;
 
         //getting the player name
@@ -84,7 +79,7 @@ public class GameLogic{
             System.out.println("\nPlease enter your name");
             name = scanner.next();
             //ask player if he wants to correct the name
-            clearConsole();
+            Story.clearConsole();
             System.out.println("You name is " + name + ".\nIs that correct?");
             System.out.println("(1) Yes");
             System.out.println("(2) No");
@@ -100,7 +95,7 @@ public class GameLogic{
             System.out.println("(2) Flinstone");
             System.out.println("(3) PowerPuff");
             int input = readInt("-> " , 3);
-            clearConsole();
+            Story.clearConsole();
 
             if(input == 1){
                 heroName = "Animaniac";
@@ -119,7 +114,15 @@ public class GameLogic{
 
         //create a new player object
         if(x == 1){
-            _ihero = HeroType.newType(name, heroName, 1, 1000, 30, 90, 300);
+            try{
+                _ihero = HeroType.newType(name, heroName, 1, 1000, 30, 90, 300);
+                ((Hero)_ihero).validate();
+            }
+            catch (Exception ex)
+            {
+                System.out.println(ex.getMessage());
+            }
+            
         }
          _IEnemy = EnemyType.enemyType("Aku", ThreadLocalRandom.current().nextInt(0,20), ThreadLocalRandom.current().nextInt(50,100), ThreadLocalRandom.current().nextInt(30,70));
         //  _IEnemy = EnemyType.enemyType("Max",enemies[1]);
@@ -149,7 +152,7 @@ public class GameLogic{
             System.out.println("(3) South");
             System.out.println("(4) West");
             int input = readInt("-> " , 4);
-            clearConsole();
+            Story.clearConsole();
             //System.out.println(input);
 
             if(input > 4 || input < 1 ){
@@ -181,25 +184,21 @@ public class GameLogic{
     }
 
     public static void MyCharacterInfo(){
-        clearConsole();
-        System.out.println("MyCharacter INFORMATION\n----------------\n");
-        System.out.println(player.name + player.heroName);
-        //System.out.println("Experience Points: " + player.experiencePoints);
+        Story.clearConsole();
+        System.out.println("My Character INFORMATION\n----------------\n");
+        System.out.println("Name: " + ((Hero)_ihero).name);
+        System.out.println("Hero Type: " + ((Hero)_ihero).heroName);
+        System.out.println("Level: " + ((Hero)_ihero).level);
+        System.out.println("Experience: " + ((Hero)_ihero).experience);
+        System.out.println("Attack: " + ((Hero)_ihero).attack);
+        System.out.println("Defence: " + ((Hero)_ihero).defence);
+        System.out.println("Hit Points: " + ((Hero)_ihero).hitPoint);
 
-        //printing the chosen traits
-        //if(player.numberAttackUpgrades > 0){
-        //    System.out.println("Offensive trait: " + player.attackUpgrades[player.numberAttackUpgrades - 1]);
-        //    System.out.println("\n\n\n\n");
-       // }
-       // if(player.numberDefensiveUpgrades > 0){
-       //     System.out.println("Defensive trait: " + player.defenseUpgrades[player.numberDefensiveUpgrades -1]);
-        //}
-        //anythingToContinue();
     }
 
     //printing the main menu
     public static void printMenu(){
-        clearConsole();
+        Story.clearConsole();
         System.out.print("This is the Menu\n------------------\n");
         System.out.println("Please choose an action");
         System.out.print("\n");
@@ -209,13 +208,10 @@ public class GameLogic{
     }
 
 
-    //calculate random encounter
     public static void randomEncounter(){
-        //random number between 0 and the length of the enemies array
         int encounter = (int) (Math.random()) * enemies.length;
 
         if(enemies[encounter].equals("Aku")){
-            //something to fight Aku
         }else if (enemies[encounter].equals("Scar")){
             //something to fight scar
         }else if (enemies[encounter].equals("Shredder")){
@@ -225,7 +221,6 @@ public class GameLogic{
         }
     }
 
-    //main game loop
     public static void gameLoop(){
         while(isRunning){
             printMenu();

@@ -29,15 +29,6 @@ public class Enemy {
         return hitPoint;
     }
 
-    // public MyCharacter getMyCharacter() {
-    //     return myCharacter;
-    // }
-
-    // public void setMyCharacter(MyCharacter myCharacter) {
-    //     this.myCharacter = myCharacter;
-    // 
-
-
     public int getAttack() {
         return attack;
     }

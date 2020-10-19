@@ -1,9 +1,16 @@
 package com.project.person.hero;
 
+import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import com.project.MyCharacter;
 import com.project.person.enemy.Enemy;
+
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
 
 public class Hero {
     public String name;
@@ -144,6 +151,25 @@ public class Hero {
             this.increaseLevel();
         }
         this.setExperience(experience + gainedExp);
+    }
+
+    public void validate() throws MyException
+    {
+        Logger.getLogger("org.hibernate").setLevel(Level.OFF);
+        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        Validator validator = factory.getValidator();
+        Set<ConstraintViolation<Hero>> constraintViolations = validator.validate(this);
+        if(constraintViolations.size() != 0)
+        {
+            StringBuilder builder = new StringBuilder();
+            builder.append("Hero Validation error(s):");
+            builder.append(constraintViolations.size() + "\n");
+            for (ConstraintViolation<Hero> violation : constraintViolations)
+            {
+                builder.append("property: [" + violation.getPropertyPath() + "], value: [" + violation.getInvalidValue() + "], message: [" + violation.getMessage() + "]\n");
+            }
+            throw new MyException(builder.toString());
+        }
     }
 
     // public void run()
