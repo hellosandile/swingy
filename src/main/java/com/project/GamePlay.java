@@ -4,6 +4,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import com.project.person.enemy.Aku;
 import com.project.person.enemy.Enemy;
+import com.project.person.hero.Hero;
 import com.project.person.hero.IGameControlls;
 
 public class GamePlay implements IGameControlls{
@@ -13,6 +14,7 @@ public class GamePlay implements IGameControlls{
     public int size;
     public int xpos;
     public int ypos;
+    public boolean testBool = false;
     public MyCharacter myCharacter;
     private boolean condition = false;
 
@@ -58,7 +60,14 @@ public class GamePlay implements IGameControlls{
             }
         }
         map[this.ypos][this.xpos] = 3;
-        map[5][6] = 1;
+        if(testBool == false)
+        {
+           map[5][6] = 1;
+        }
+        else
+        {
+            map[5][6] = 0;
+        }
         for(int y = 0; y < mapy; y++){
             for(int x = 0; x < mapx; x++){
                 switch(map[y][x]){
@@ -67,6 +76,8 @@ public class GamePlay implements IGameControlls{
                         break;
                     case 1:
                         System.out.print("* d *" );
+                        Aku.setX(x);
+                        Aku.setY(y);
                         break;
                     default:
                         System.out.print("* H *" );
@@ -100,36 +111,75 @@ public class GamePlay implements IGameControlls{
         {
             Story.printFightOrRun();
             int input = GameLogic.readInt("-> " , 2);
-            if(input == 1){
+            if(input == 1)
+            {
                 System.out.println("They are fightijng");
                 //fight shit
-            }if(input == 2){
-            System.out.println("running away");
+                onFight();
+                
+            }
+
+            if(input == 2)
+            {
+                System.out.println("running away");
                 //run shit
             }
         }
     }
 
+    public void onFight()
+    {
+        Enemy aku = (Enemy) GameLogic._IEnemy;
+        int gainedXp = Result(aku);
+        System.out.println("Gained XP:  " + gainedXp);
+        System.out.println("Original XP:  " + ((Hero)GameLogic._ihero).experience);
+        if (gainedXp >= 0)
+        {
+            ((Hero)GameLogic._ihero).increaseExp(gainedXp);
+            System.out.println(((Hero)GameLogic._ihero).experience);
+            System.out.println(((Hero)GameLogic._ihero).level);
+            testBool = true;
+            GameLogic.startJourney();
+
+        }
+        else{
+            System.out.println("You lost");
+        }
+    }
+
     public Boolean samePosition()
     {
+        //REMBER TO DELETE
         //Not getting the Aku values(the enemy so that they can fight)
-        System.out.println(Aku.getX());
-        System.out.println(Aku.getY());
-        System.out.println(xpos);
-        System.out.println(ypos);
+        // System.out.println(Aku.getX());
+        // System.out.println(Aku.getY());
+        // System.out.println(xpos);
+        // System.out.println(ypos);
+       
         if (Aku.getX() == xpos && Aku.getY() == ypos){
-            //System.out.println("`ptint you BITCH!!!!");
-            return true;
-
+           return true;
         }
         return false;
     }
 
-    public void updateExp(int exp) {
+    public void updateExp(int exp)
+    {
 
     }
 
     public void meetEnemy(int Hy, int Hx, int Ey, int Ex) {
 
+    }
+
+    public int Result(Enemy enemy)
+    {
+        int xp = enemy.getAttack() + enemy.getDefence() + enemy.getHitPoint();
+        int rand = ThreadLocalRandom.current().nextInt(0, 100);
+
+        if (rand < 20) {
+            return xp;
+        }
+
+        return ((Hero) GameLogic._ihero).fight(enemy) ? xp : -1;
     }
 }

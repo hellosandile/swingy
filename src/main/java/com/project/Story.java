@@ -17,7 +17,6 @@ public class Story {
         System.out.println("You encounted an enemy. What do you want to do?");
         System.out.println("(1) Fight");
         System.out.println("(2) Run for the hills");
-        GameLogic.anythingToContinue();
     }
 
     public static void printChooseHero(){

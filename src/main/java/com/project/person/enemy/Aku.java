@@ -48,4 +48,14 @@ public class Aku extends Enemy implements iEnemy {
     {
         return yp;
     }
+
+    public static void setX(int X)
+    {
+        xp = X;
+    }
+
+    public static void setY(int Y)
+    {
+        yp = Y;
+    }
 }

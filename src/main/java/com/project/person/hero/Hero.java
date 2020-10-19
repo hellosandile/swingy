@@ -8,18 +8,23 @@ import com.project.person.enemy.Enemy;
 public class Hero {
     public String name;
     public String heroName;
-    public int level = 1;
-    public int experience = 0;
-    public int attack = 0;
-    public int defence = 0;
-    public int hitPointLevel = 100;
-    public int hitPoint = 100;
+    public int level;
+    public int experience;
+    public int attack;
+    public int defence;
+    public int hitPointLevel;
+    public int hitPoint;
     protected MyCharacter myCharacter;
 
     public Hero(String name, String heroName, MyCharacter myCharacter){
         this.name = name;
         this.heroName = heroName;
         this.myCharacter = myCharacter;
+        this.level = this.myCharacter.Level;
+        this.experience = this.myCharacter.Experience;
+        this.attack = this.myCharacter.Attack;
+        this.defence = this.myCharacter.Defense;
+        this.hitPoint = this.myCharacter.Hp;
     }
 
     public String getName() {
@@ -120,18 +125,6 @@ public class Hero {
             hero_points  = this.getHitPoint();
         }
         return (hero_points > 0) ? true : false;
-    }
-
-    public int Result(Enemy enemy)
-    {
-        int xp = enemy.getAttack() + enemy.getDefence() + enemy.getHitPoint();
-        int rand = ThreadLocalRandom.current().nextInt(0, 40);
-
-        if (rand < 20) {
-            return xp;
-        }
-
-        return fight(enemy) ? xp : -1;
     }
 
     public void increaseLevel()

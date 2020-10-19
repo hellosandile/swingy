@@ -9,6 +9,7 @@ import com.project.person.hero.Hero;
 import com.project.person.hero.iHero;
 
 import java.util.Scanner;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class GameLogic{
     static Scanner scanner = new Scanner(System.in);
@@ -51,7 +52,7 @@ public class GameLogic{
             try{
                 input = Integer.parseInt(scanner.next());
             }catch(Exception e){
-                System.out.println("Please enter number less than 4");
+                System.out.println("Please enter the correct ");
             }
 
         }while(input < 1 || input > userChoices);
@@ -118,9 +119,9 @@ public class GameLogic{
 
         //create a new player object
         if(x == 1){
-            _ihero = HeroType.newType(name, heroName, 1, 100, 30, 25, 100);
+            _ihero = HeroType.newType(name, heroName, 1, 1000, 30, 90, 300);
         }
-         _IEnemy = EnemyType.enemyType("Aku", 20, 20, 20);
+         _IEnemy = EnemyType.enemyType("Aku", ThreadLocalRandom.current().nextInt(0,20), ThreadLocalRandom.current().nextInt(50,100), ThreadLocalRandom.current().nextInt(30,70));
         //  _IEnemy = EnemyType.enemyType("Max",enemies[1]);
 
         //setting isRunning to true so that the game can continue
@@ -135,8 +136,8 @@ public class GameLogic{
     public static void startJourney(){
         
         //So this is where I want to give the option to go NESW, call the actual battle method until dead or leveled up.
-        _ihero.playing();
-        _IEnemy.Enemyplaying();
+        // _ihero.playing();
+        // _IEnemy.Enemyplaying();
         System.out.println("Aku Attack : " + _IEnemy.getAku().getAttack());
 
         gamePlay.MapDisplay();
