@@ -1,4 +1,6 @@
 com/project/person/hero/IGameControlls.class
+com/project/person/hero/MyException.class
+com/project/person/HeroType.class
 com/project/Main.class
 com/project/person/hero/iHero.class
 com/project/person/Person.class
@@ -11,5 +13,4 @@ com/project/GamePlay.class
 com/project/person/enemy/Enemy.class
 com/project/MyCharacter.class
 com/project/person/enemy/iEnemy.class
-com/project/HeroType.class
 com/project/person/enemy/Aku.class
